@@ -24,15 +24,28 @@
             width: 320px;
             color: white;
             animation: zoomIn 1.2s ease;
+            position: relative;
+        }
+
+        /* FOTO */
+        .photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+            animation: fadeUp 1.5s ease forwards;
         }
 
         .big-love {
-            font-size: 80px;
+            font-size: 70px;
             animation: pulse 1.5s infinite;
+            margin-bottom: 5px;
         }
 
         .typing {
-            font-size: 26px;
+            font-size: 24px;
             margin-top: 10px;
             white-space: nowrap;
             overflow: hidden;
@@ -97,18 +110,24 @@
 <body>
 
 <div class="card">
+
+    <!-- FOTO LANGSUNG DARI FILE -->
+    <img src="liya.jpeg" class="photo" alt="foto">
+
     <div class="big-love">❤️</div>
 
     <div class="typing">Hai kak ❤️</div>
-    <div class="typing delay">Aku Sayang Kamu ❤️</div>
+    <div class="typing delay">Aku Sayang Kamu</div>
 
     <p>
         🥰<br>
-        Maafkan aku ya…  
-        dengan sepenuh hati aku benar-benar sayang kamu 💕
+        Maafkan aku ya…<br>
+        aku sadar aku sudah menyakitimu.<br>
+        Aku nggak mau membela diri,<br>
+        cuma ingin minta maaf dengan jujur.
     </p>
 
-    <div class="thanks">Makasih yaaa 😘</div>
+    <div class="thanks">Terima kasih sudah membaca 🤍</div>
 </div>
 
 <script>
@@ -125,7 +144,7 @@
         }, 7000);
     }
 
-    setInterval(loveFall, 300);
+    setInterval(loveFall, 350);
 </script>
 
 </body>
