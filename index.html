@@ -8,7 +8,7 @@
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: radial-gradient(circle at top, #7f7fd5, #2c2c54);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,96 +16,128 @@ body {
     overflow: hidden;
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    padding: 35px 25px;
-    border-radius: 25px;
-    text-align: center;
-    width: 340px;
-    color: #fff;
-    animation: fadeScale 1.2s ease;
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+/* BINTANG */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out;
 }
 
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(14px);
+    padding: 35px 25px;
+    border-radius: 28px;
+    text-align: center;
+    width: 350px;
+    color: #fff;
+    position: relative;
+    animation: floatIn 1.4s ease;
+    box-shadow:
+        0 0 30px rgba(255,255,255,0.3),
+        0 0 60px rgba(180,150,255,0.25);
+}
+
+/* CAHAYA */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 30px;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    animation: shimmer 3s infinite;
+}
+
+/* FOTO */
 .photo {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 4px solid rgba(255,255,255,0.6);
+    border: 4px solid rgba(255,255,255,0.7);
+    box-shadow: 0 0 25px rgba(255,255,255,0.6);
 }
 
+/* HATI */
 .heart {
     font-size: 55px;
-    animation: pulse 1.5s infinite;
+    animation: pulse 1.4s infinite;
 }
 
+/* JUDUL */
 .title {
     font-size: 22px;
     margin-top: 10px;
-    animation: typing 3s steps(25) forwards;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid white;
     width: 0;
+    animation: typing 3s steps(25) forwards;
 }
 
+/* TEKS */
 .message {
-    margin-top: 18px;
+    margin-top: 20px;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
     opacity: 0;
     animation: fadeUp 1.5s ease forwards;
     animation-delay: 3.5s;
 }
 
 .footer {
-    margin-top: 15px;
+    margin-top: 18px;
     font-size: 18px;
     opacity: 0;
     animation: fadeUp 1.5s ease forwards;
-    animation-delay: 5s;
+    animation-delay: 5.2s;
 }
 
+/* LOVE JATUH */
 .love {
     position: absolute;
-    font-size: 20px;
+    font-size: 18px;
     animation: fall linear infinite;
 }
 
 /* ANIMASI */
-@keyframes typing {
-    to { width: 100%; }
-}
-
+@keyframes typing { to { width: 100%; } }
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes fadeScale {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+@keyframes floatIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.15); }
     100% { transform: scale(1); }
 }
-
 @keyframes fall {
     0% { top: -10%; opacity: 1; }
     100% { top: 110%; opacity: 0; }
+}
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- CARD -->
 <div class="card">
     <img src="liya.jpg" class="photo" alt="foto">
 
@@ -115,9 +147,9 @@ body {
 
     <div class="message">
         Aku masih sayang kamu 🤍<br><br>
-        Maaf ya kalau selama ini aku<br>
-        belum bisa ngasih kepastian.<br><br>
-        Bukan karena aku nggak mau,<br>
+        Maaf ya kalau aku belum bisa<br>
+        ngasih kepastian.<br><br>
+        Bukan karena nggak mau,<br>
         tapi karena aku sadar<br>
         aku belum punya apa-apa<br>
         untuk menjalin hubungan<br>
@@ -131,19 +163,27 @@ body {
 </div>
 
 <script>
-function loveFall() {
-    const love = document.createElement("div");
-    love.className = "love";
-    love.innerText = "🤍";
-    love.style.left = Math.random() * 100 + "vw";
-    love.style.animationDuration = (Math.random() * 3 + 4) + "s";
-    document.body.appendChild(love);
-
-    setTimeout(() => {
-        love.remove();
-    }, 7000);
+// BINTANG
+for(let i=0;i<60;i++){
+    const s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(s);
 }
-setInterval(loveFall, 400);
+
+// LOVE JATUH
+function loveFall(){
+    const l=document.createElement("div");
+    l.className="love";
+    l.innerText="🤍";
+    l.style.left=Math.random()*100+"vw";
+    l.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(l);
+    setTimeout(()=>l.remove(),7000);
+}
+setInterval(loveFall,450);
 </script>
 
 </body>
